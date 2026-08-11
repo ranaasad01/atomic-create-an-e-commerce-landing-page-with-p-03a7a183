@@ -54,7 +54,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center flex-shrink-0">
-            <Image src="https://titoaistorageaccount.blob.core.windows.net/titoai-storage/assets/03a7a183-510f-4804-9261-d3b87d909420/4fe2b7cba6124eba9d19e81a12279242.png?v=1786449509421" alt="Asad logo" width={120} height={40} className="h-9 w-auto object-contain" priority />
+            <Image src="https://titoaistorageaccount.blob.core.windows.net/titoai-storage/assets/03a7a183-510f-4804-9261-d3b87d909420/e4d205a9d4764abe84a826bb025eef1b.png?v=1786450486615" alt="Asad logo" width={120} height={40} className="h-9 w-auto object-contain" priority />
           </Link>
 
           {/* Desktop Nav */}
