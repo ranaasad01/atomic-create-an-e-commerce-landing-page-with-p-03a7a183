@@ -1,0 +1,258 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "bestSellers": "Más Vendidos",
+    "newArrivals": "Nuevas Llegadas",
+    "categories": "Categorías",
+    "sale": "Ofertas",
+    "shopNow": "Comprar Ahora",
+    "searchLabel": "Buscar productos",
+    "cartLabel": "Ver carrito de compras",
+    "menuLabel": "Alternar menú de navegación"
+  },
+  "footer": {
+    "tagline": "Llevando productos de calidad a tu puerta, un pedido a la vez.",
+    "shopHeading": "Tienda",
+    "shopAllProducts": "Todos los Productos",
+    "shopBestSellers": "Más Vendidos",
+    "shopNewArrivals": "Nuevas Llegadas",
+    "shopSale": "Ofertas",
+    "shopGiftCards": "Tarjetas de Regalo",
+    "helpHeading": "Ayuda",
+    "helpFaqs": "Preguntas Frecuentes",
+    "helpTrack": "Rastrear Mi Pedido",
+    "helpReturns": "Devoluciones y Reembolsos",
+    "helpContact": "Contactar Soporte",
+    "helpSizeGuide": "Guía de Tallas",
+    "companyHeading": "Empresa",
+    "companyAbout": "Acerca de Asad",
+    "companyCareers": "Carreras",
+    "companyPress": "Prensa",
+    "companySustainability": "Sostenibilidad",
+    "companyAffiliate": "Programa de Afiliados",
+    "legalHeading": "Legal",
+    "legalPrivacy": "Política de Privacidad",
+    "legalTerms": "Términos de Servicio",
+    "legalCookies": "Configuración de Cookies",
+    "legalAccessibility": "Accesibilidad",
+    "copyright": "© 2024 Asad Store. Todos los derechos reservados.",
+    "secureCheckout": "Protegido por encriptación SSL de 256 bits",
+    "paymentMethods": [
+      "Visa",
+      "Mastercard",
+      "PayPal",
+      "Apple Pay",
+      "Google Pay"
+    ]
+  },
+  "hero": [
+    "Free shipping on orders over $49",
+    "30-day hassle-free returns",
+    "Thousands of products across every category"
+  ],
+  "promo-banner": [
+    "Flash Deal: Wireless Earbuds — was $79, now $31",
+    "Buy 2 Get 1 Free on all Apparel",
+    "Home Essentials Bundle — save an extra 20% with ASAD60"
+  ],
+  "featured-products": [
+    {
+      "id": "fp1",
+      "title": "ProSound X3 Wireless Earbuds",
+      "price": 31.99,
+      "originalPrice": 79.99,
+      "rating": 4.8,
+      "reviewCount": 2341,
+      "badge": "Hot Deal",
+      "category": "Electronics & Gadgets",
+      "description": "Crystal-clear audio, 28-hr battery, IPX5 waterproof.",
+      "image": "/images/prosound-x3-wireless-earbuds.jpg"
+    },
+    {
+      "id": "fp2",
+      "title": "NovaSkin Moisturising Face Cream",
+      "price": 18.5,
+      "originalPrice": 34.0,
+      "rating": 4.5,
+      "reviewCount": 876,
+      "badge": "Sale",
+      "category": "Beauty & Skincare",
+      "description": "Dermatologist-tested, fragrance-free, 72-hr hydration.",
+      "image": "/images/novaskin-moisturising-face-cream.jpg"
+    },
+    {
+      "id": "fp3",
+      "title": "ErgoDesk Bamboo Desk Organiser",
+      "price": 24.99,
+      "rating": 4.9,
+      "reviewCount": 1102,
+      "badge": "Best Seller",
+      "category": "Home & Living",
+      "description": "6 compartments, eco-friendly bamboo, fits any desk setup.",
+      "image": "/images/ergodesk-bamboo-desk-organiser.jpg"
+    },
+    {
+      "id": "fp4",
+      "title": "FlexFit Resistance Band Set",
+      "price": 14.99,
+      "originalPrice": 29.99,
+      "rating": 4.6,
+      "reviewCount": 654,
+      "badge": "Sale",
+      "category": "Sports & Fitness",
+      "description": "Home gym essential, latex-free, includes carry bag.",
+      "image": "/images/flexfit-resistance-band-set.jpg"
+    },
+    {
+      "id": "fp5",
+      "title": "LumiCharge 20W Fast Charger",
+      "price": 19.99,
+      "rating": 4.7,
+      "reviewCount": 3210,
+      "badge": "Top Rated",
+      "category": "Electronics & Gadgets",
+      "description": "Universal USB-C, charges iPhone & Android in under 45 min.",
+      "image": "/images/lumicharge-20w-fast-charger.jpg"
+    },
+    {
+      "id": "fp6",
+      "title": "UrbanStep Unisex Sneakers",
+      "price": 44.99,
+      "originalPrice": 69.99,
+      "rating": 4.4,
+      "reviewCount": 489,
+      "badge": "Sale",
+      "category": "Fashion & Apparel",
+      "description": "Lightweight foam sole, breathable mesh, sizes 5-13.",
+      "image": "/images/urbanstep-unisex-sneakers.jpg"
+    },
+    {
+      "id": "fp7",
+      "title": "ArcLight LED Desk Lamp",
+      "price": 32.0,
+      "rating": 4.8,
+      "reviewCount": 721,
+      "badge": "Editor's Pick",
+      "category": "Home & Living",
+      "description": "3 colour modes, USB charging port, touch dimmer.",
+      "image": "/images/arclight-led-desk-lamp.jpg"
+    },
+    {
+      "id": "fp8",
+      "title": "ColdBreeze Insulated Water Bottle 1L",
+      "price": 16.99,
+      "rating": 4.9,
+      "reviewCount": 1887,
+      "badge": "Best Seller",
+      "category": "Sports & Fitness",
+      "description": "Keeps drinks cold 24 hrs, leak-proof, BPA-free stainless steel.",
+      "image": "/images/coldbreeze-insulated-water-bottle.jpg"
+    }
+  ],
+  "category-filters": [
+    "All Products",
+    "Electronics & Gadgets",
+    "Fashion & Apparel",
+    "Home & Living",
+    "Beauty & Skincare",
+    "Sports & Fitness",
+    "Books & Stationery",
+    "Toys & Kids"
+  ],
+  "new-arrivals": [
+    {
+      "id": "na1",
+      "title": "StellarCam 4K Action Camera",
+      "price": 89.99,
+      "rating": 4.3,
+      "reviewCount": 128,
+      "badge": "New",
+      "category": "Electronics & Gadgets",
+      "description": "Waterproof to 30m, 170° wide-angle, includes mounting kit.",
+      "image": "/images/stellarcam-4k-action-camera.jpg"
+    },
+    {
+      "id": "na2",
+      "title": "CloudPillow Memory Foam Neck Cushion",
+      "price": 22.0,
+      "rating": 4.7,
+      "reviewCount": 64,
+      "badge": "New",
+      "category": "Home & Living",
+      "description": "Ergonomic travel design, washable cover, fits all seat types.",
+      "image": "/images/cloudpillow-memory-foam-neck-cushion.jpg"
+    },
+    {
+      "id": "na3",
+      "title": "ZenBrew Portable French Press",
+      "price": 27.5,
+      "rating": 4.5,
+      "reviewCount": 93,
+      "badge": "New",
+      "category": "Home & Living",
+      "description": "350ml borosilicate glass, double-wall insulated, perfect for camping.",
+      "image": "/images/zenbrew-portable-french-press.jpg"
+    },
+    {
+      "id": "na4",
+      "title": "PulseWatch Fitness Tracker Pro",
+      "price": 54.99,
+      "rating": 4.4,
+      "reviewCount": 211,
+      "badge": "New",
+      "category": "Sports & Fitness",
+      "description": "Heart rate, SpO2, sleep tracking, 7-day battery, AMOLED display.",
+      "image": "/images/pulsewatch-fitness-tracker-pro.jpg"
+    },
+    {
+      "id": "na5",
+      "title": "SnapGrid Phone Tripod & Ring Light Combo",
+      "price": 36.0,
+      "rating": 4.8,
+      "reviewCount": 47,
+      "badge": "New",
+      "category": "Electronics & Gadgets",
+      "description": "10-inch ring light, 3 colour temps, flexible tripod legs up to 55 inches.",
+      "image": "/images/snapgrid-phone-tripod-ring-light.jpg"
+    },
+    {
+      "id": "na6",
+      "title": "TerraPlant Self-Watering Planter Set",
+      "price": 19.99,
+      "rating": 4.6,
+      "reviewCount": 38,
+      "badge": "New",
+      "category": "Home & Living",
+      "description": "Minimalist ceramic finish, built-in reservoir, ideal for succulents and herbs.",
+      "image": "/images/terraplant-self-watering-planter-set.jpg"
+    },
+    {
+      "id": "na7",
+      "title": "SwiftType Mechanical Keyboard TKL",
+      "price": 64.99,
+      "rating": 4.9,
+      "reviewCount": 156,
+      "badge": "New",
+      "category": "Electronics & Gadgets",
+      "description": "Blue switches, RGB backlight, aluminium frame, plug-and-play USB-C.",
+      "image": "/images/swifttype-mechanical-keyboard-tkl.jpg"
+    },
+    {
+      "id": "na8",
+      "title": "CozyKnit Oversized Hoodie",
+      "price": 38.0,
+      "rating": 4.5,
+      "reviewCount": 82,
+      "badge": "New",
+      "category": "Fashion & Apparel",
+      "description": "100% cotton fleece, kangaroo pocket, available in 8 colourways, XS-3XL.",
+      "image": "/images/cozyknit-oversized-hoodie.jpg"
+    }
+  ],
+  "newsletter": [
+    "Exclusive subscriber-only discount codes every week",
+    "Early access to flash sales and new product launches",
+    "Personalised picks based on your browsing history",
+    "Unsubscribe anytime — no strings attached"
+  ]
+}
