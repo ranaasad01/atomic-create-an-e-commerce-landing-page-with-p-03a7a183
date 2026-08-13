@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Eye, EyeOff, Mail, Lock, User } from 'lucide-react';
 import { supabase } from "@/lib/supabase";
 
 export default function SignupPage() {
+  const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,7 +32,7 @@ export default function SignupPage() {
       return;
     }
 
-    const { error: signUpError } = await supabase.auth.signUp({
+    const { data, error: signUpError } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -44,6 +46,13 @@ export default function SignupPage() {
       return;
     }
 
+    if (data.session) {
+      // Email confirmation is disabled — user is immediately signed in
+      router.push("/");
+      return;
+    }
+
+    // Email confirmation is required — show success banner
     setSuccess(true);
     setLoading(false);
   };
@@ -162,13 +171,14 @@ export default function SignupPage() {
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
+                placeholder="Create a password"
                 required
+                minLength={6}
                 className="w-full bg-[var(--background)] border border-[var(--border)] rounded-xl pl-10 pr-12 py-3 text-[var(--foreground)] placeholder-[var(--muted-foreground)] focus:outline-none focus:border-[var(--primary)] transition-colors"
               />
               <button
                 type="button"
-                onClick={() => setShowPassword((prev) => !prev)}
+                onClick={() => setShowPassword((v) => !v)}
                 aria-label={showPassword ? "Hide password" : "Show password"}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
               >
@@ -195,13 +205,14 @@ export default function SignupPage() {
                 type={showConfirm ? "text" : "password"}
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder="••••••••"
+                placeholder="Repeat your password"
                 required
+                minLength={6}
                 className="w-full bg-[var(--background)] border border-[var(--border)] rounded-xl pl-10 pr-12 py-3 text-[var(--foreground)] placeholder-[var(--muted-foreground)] focus:outline-none focus:border-[var(--primary)] transition-colors"
               />
               <button
                 type="button"
-                onClick={() => setShowConfirm((prev) => !prev)}
+                onClick={() => setShowConfirm((v) => !v)}
                 aria-label={showConfirm ? "Hide confirm password" : "Show confirm password"}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
               >
@@ -220,39 +231,30 @@ export default function SignupPage() {
               required
               className="mt-1 h-4 w-4 rounded border-[var(--border)] bg-[var(--background)] accent-[var(--primary)] cursor-pointer"
             />
-            <label
-              htmlFor="agreed"
-              className="text-sm text-[var(--muted-foreground)] leading-relaxed cursor-pointer"
-            >
+            <label htmlFor="agreed" className="text-sm text-[var(--muted-foreground)] leading-snug">
               I agree to the{" "}
-              <Link
-                href="#"
-                className="text-[var(--primary)] hover:underline"
-              >
+              <Link href="#" className="text-[var(--primary)] hover:underline">
                 Terms of Service
               </Link>{" "}
               and{" "}
-              <Link
-                href="#"
-                className="text-[var(--primary)] hover:underline"
-              >
+              <Link href="#" className="text-[var(--primary)] hover:underline">
                 Privacy Policy
               </Link>
             </label>
           </div>
 
-          {/* Submit Button */}
+          {/* Submit */}
           <button
             type="submit"
-            disabled={loading}
-            className="w-full bg-[var(--primary)] hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-xl transition-all duration-200 mt-2"
+            disabled={loading || !agreed}
+            className="w-full bg-[var(--primary)] hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-xl transition-all duration-200 mt-2"
           >
-            {loading ? "Creating account\u2026" : "Create Account"}
+            {loading ? "Creating account..." : "Create Account"}
           </button>
         </form>
 
         {/* Divider */}
-        <div className="flex items-center gap-3 my-6">
+        <div className="flex items-center gap-3 my-5">
           <div className="flex-1 h-px bg-[var(--border)]" />
           <span className="text-xs text-[var(--muted-foreground)]">or</span>
           <div className="flex-1 h-px bg-[var(--border)]" />
@@ -263,7 +265,7 @@ export default function SignupPage() {
           Already have an account?{" "}
           <Link
             href="/login"
-            className="text-[var(--primary)] font-medium hover:underline"
+            className="text-[var(--primary)] font-semibold hover:underline"
           >
             Sign in
           </Link>

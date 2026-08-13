@@ -31,6 +31,7 @@ export default function LoginPage() {
       return;
     }
 
+    router.refresh();
     router.push("/");
   };
 
@@ -63,7 +64,7 @@ export default function LoginPage() {
         {error && (
           <div
             role="alert"
-            className="bg-red-500/10 border border-red-500/30 text-red-400 rounded-xl px-4 py-3 text-sm mb-2"
+            className="bg-red-500/10 border border-red-500/30 text-red-400 rounded-xl px-4 py-3 text-sm mb-4"
           >
             {error}
           </div>
@@ -97,12 +98,20 @@ export default function LoginPage() {
 
           {/* Password Field */}
           <div>
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-[var(--foreground)] mb-1"
-            >
-              Password
-            </label>
+            <div className="flex items-center justify-between mb-1">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-[var(--foreground)]"
+              >
+                Password
+              </label>
+              <Link
+                href="#"
+                className="text-xs text-[var(--primary)] hover:underline"
+              >
+                Forgot password?
+              </Link>
+            </div>
             <div className="relative">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--muted-foreground)] pointer-events-none">
                 <Lock size={16} aria-hidden="true" />
@@ -112,13 +121,13 @@ export default function LoginPage() {
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
+                placeholder="Your password"
                 required
                 className="w-full bg-[var(--background)] border border-[var(--border)] rounded-xl pl-10 pr-12 py-3 text-[var(--foreground)] placeholder-[var(--muted-foreground)] focus:outline-none focus:border-[var(--primary)] transition-colors"
               />
               <button
                 type="button"
-                onClick={() => setShowPassword((prev) => !prev)}
+                onClick={() => setShowPassword((v) => !v)}
                 aria-label={showPassword ? "Hide password" : "Show password"}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
               >
@@ -127,23 +136,13 @@ export default function LoginPage() {
             </div>
           </div>
 
-          {/* Forgot Password */}
-          <div className="flex justify-end">
-            <Link
-              href="#"
-              className="text-xs text-[var(--primary)] hover:underline"
-            >
-              Forgot password?
-            </Link>
-          </div>
-
           {/* Submit */}
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[var(--primary)] hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-xl transition-all duration-200 text-sm"
+            className="w-full bg-[var(--primary)] hover:bg-[var(--primary)]/90 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold rounded-xl py-3 transition-all duration-200 mt-2"
           >
-            {loading ? "Signing in\u2026" : "Sign In"}
+            {loading ? "Signing in..." : "Sign In"}
           </button>
         </form>
 
@@ -155,7 +154,7 @@ export default function LoginPage() {
         </div>
 
         {/* Sign Up Link */}
-        <p className="text-center text-sm text-[var(--muted-foreground)]">
+        <p className="text-sm text-[var(--muted-foreground)] text-center">
           Don&apos;t have an account?{" "}
           <Link
             href="/signup"
