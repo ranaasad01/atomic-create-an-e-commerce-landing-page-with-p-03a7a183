@@ -8,7 +8,9 @@
     "shopNow": "Shop Now",
     "searchLabel": "Search products",
     "cartLabel": "View shopping cart",
-    "menuLabel": "Toggle navigation menu"
+    "menuLabel": "Toggle navigation menu",
+    "login": "Login",
+    "signUp": "Sign Up"
   },
   "footer": {
     "tagline": "Bringing quality products to your doorstep, one order at a time.",
@@ -125,134 +127,53 @@
       "category": "Fashion & Apparel",
       "description": "Lightweight foam sole, breathable mesh, sizes 5-13.",
       "image": "/images/urbanstep-unisex-sneakers.jpg"
-    },
-    {
-      "id": "fp7",
-      "title": "ArcLight LED Desk Lamp",
-      "price": 32.0,
-      "rating": 4.8,
-      "reviewCount": 721,
-      "badge": "Editor's Pick",
-      "category": "Home & Living",
-      "description": "3 colour modes, USB charging port, touch dimmer.",
-      "image": "/images/arclight-led-desk-lamp.jpg"
-    },
-    {
-      "id": "fp8",
-      "title": "ColdBreeze Insulated Water Bottle 1L",
-      "price": 16.99,
-      "rating": 4.9,
-      "reviewCount": 1887,
-      "badge": "Best Seller",
-      "category": "Sports & Fitness",
-      "description": "Keeps drinks cold 24 hrs, leak-proof, BPA-free stainless steel.",
-      "image": "/images/coldbreeze-insulated-water-bottle.jpg"
     }
-  ],
-  "category-filters": [
-    "All Products",
-    "Electronics & Gadgets",
-    "Fashion & Apparel",
-    "Home & Living",
-    "Beauty & Skincare",
-    "Sports & Fitness",
-    "Books & Stationery",
-    "Toys & Kids"
   ],
   "new-arrivals": [
     {
       "id": "na1",
-      "title": "StellarCam 4K Action Camera",
-      "price": 89.99,
-      "rating": 4.3,
-      "reviewCount": 128,
+      "title": "ArcLight LED Desk Lamp",
+      "price": 29.99,
+      "rating": 4.7,
+      "reviewCount": 312,
       "badge": "New",
-      "category": "Electronics & Gadgets",
-      "description": "Waterproof to 30m, 170° wide-angle, includes mounting kit.",
-      "image": "/images/stellarcam-4k-action-camera.jpg"
+      "category": "Home & Living",
+      "description": "Touch dimmer, 3 colour modes, USB charging port built-in.",
+      "image": "/images/arclight-led-desk-lamp.jpg"
     },
     {
       "id": "na2",
-      "title": "CloudPillow Memory Foam Neck Cushion",
-      "price": 22.0,
-      "rating": 4.7,
-      "reviewCount": 64,
+      "title": "PureBreeze Air Purifier",
+      "price": 59.99,
+      "originalPrice": 89.99,
+      "rating": 4.6,
+      "reviewCount": 198,
       "badge": "New",
       "category": "Home & Living",
-      "description": "Ergonomic travel design, washable cover, fits all seat types.",
-      "image": "/images/cloudpillow-memory-foam-neck-cushion.jpg"
+      "description": "HEPA H13 filter, whisper-quiet, covers up to 400 sq ft.",
+      "image": "/images/purebreeze-air-purifier.jpg"
     },
     {
       "id": "na3",
-      "title": "ZenBrew Portable French Press",
-      "price": 27.5,
-      "rating": 4.5,
-      "reviewCount": 93,
+      "title": "ZenFlow Yoga Mat",
+      "price": 22.99,
+      "rating": 4.8,
+      "reviewCount": 541,
       "badge": "New",
-      "category": "Home & Living",
-      "description": "350ml borosilicate glass, double-wall insulated, perfect for camping.",
-      "image": "/images/zenbrew-portable-french-press.jpg"
+      "category": "Sports & Fitness",
+      "description": "6mm thick, non-slip, eco-friendly TPE, includes carry strap.",
+      "image": "/images/zenflow-yoga-mat.jpg"
     },
     {
       "id": "na4",
-      "title": "PulseWatch Fitness Tracker Pro",
-      "price": 54.99,
-      "rating": 4.4,
-      "reviewCount": 211,
-      "badge": "New",
-      "category": "Sports & Fitness",
-      "description": "Heart rate, SpO2, sleep tracking, 7-day battery, AMOLED display.",
-      "image": "/images/pulsewatch-fitness-tracker-pro.jpg"
-    },
-    {
-      "id": "na5",
-      "title": "SnapGrid Phone Tripod & Ring Light Combo",
-      "price": 36.0,
-      "rating": 4.8,
-      "reviewCount": 47,
-      "badge": "New",
-      "category": "Electronics & Gadgets",
-      "description": "10-inch ring light, 3 colour temps, flexible tripod legs up to 55 inches.",
-      "image": "/images/snapgrid-phone-tripod-ring-light.jpg"
-    },
-    {
-      "id": "na6",
-      "title": "TerraPlant Self-Watering Planter Set",
-      "price": 19.99,
-      "rating": 4.6,
-      "reviewCount": 38,
-      "badge": "New",
-      "category": "Home & Living",
-      "description": "Minimalist ceramic finish, built-in reservoir, ideal for succulents and herbs.",
-      "image": "/images/terraplant-self-watering-planter-set.jpg"
-    },
-    {
-      "id": "na7",
-      "title": "SwiftType Mechanical Keyboard TKL",
-      "price": 64.99,
-      "rating": 4.9,
-      "reviewCount": 156,
-      "badge": "New",
-      "category": "Electronics & Gadgets",
-      "description": "Blue switches, RGB backlight, aluminium frame, plug-and-play USB-C.",
-      "image": "/images/swifttype-mechanical-keyboard-tkl.jpg"
-    },
-    {
-      "id": "na8",
-      "title": "CozyKnit Oversized Hoodie",
-      "price": 38.0,
+      "title": "SnapShot Instant Print Camera",
+      "price": 49.99,
       "rating": 4.5,
-      "reviewCount": 82,
-      "badge": "New",
-      "category": "Fashion & Apparel",
-      "description": "100% cotton fleece, kangaroo pocket, available in 8 colourways, XS-3XL.",
-      "image": "/images/cozyknit-oversized-hoodie.jpg"
+      "reviewCount": 267,
+      "badge": "Editor's Pick",
+      "category": "Electronics & Gadgets",
+      "description": "Prints 2x3 photos in seconds, Bluetooth app control.",
+      "image": "/images/snapshot-instant-print-camera.jpg"
     }
-  ],
-  "newsletter": [
-    "Exclusive subscriber-only discount codes every week",
-    "Early access to flash sales and new product launches",
-    "Personalised picks based on your browsing history",
-    "Unsubscribe anytime — no strings attached"
   ]
 }

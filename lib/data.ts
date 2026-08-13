@@ -29,5 +29,7 @@ export const navLinks: NavLink[] = [
   { label: "New Arrivals", href: "#new-arrivals", key: "newArrivals" },
   { label: "Categories", href: "#category-filters", key: "categories" },
   { label: "Sale", href: "#promo-banner", key: "sale" },
+  { label: "Login", href: "/login", key: "login" },
+  { label: "Sign Up", href: "/signup", key: "signUp", isCta: true },
   { label: "Shop Now", href: "#featured-products", key: "shopNow", isCta: true },
 ];
