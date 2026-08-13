@@ -1,15 +1,21 @@
 "use client";
 
-import { NextIntlClientProvider } from "next-intl";
+import { NextIntlClientProvider, type AbstractIntlMessages } from "next-intl";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import en from "@/messages/en.json";
 import es from "@/messages/es.json";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const MESSAGES: Record<string, any> = { en, es };
 const DEFAULT_LOCALE = process.env.NEXT_PUBLIC_DEFAULT_LOCALE || "en";
 const LOCALES = (process.env.NEXT_PUBLIC_LOCALES || "en,es")
   .split(",").map((s) => s.trim()).filter(Boolean);
+
+// Cast the imported JSON to AbstractIntlMessages to satisfy next-intl's type
+// (the JSON may contain string[] values like paymentMethods which the type
+// doesn't accept directly, but next-intl handles them at runtime fine).
+const MESSAGES: Record<string, AbstractIntlMessages> = {
+  en: en as unknown as AbstractIntlMessages,
+  es: es as unknown as AbstractIntlMessages,
+};
 
 type Ctx = { locale: string; setLocale: (l: string) => void; locales: string[] };
 const LocaleCtx = createContext<Ctx>({ locale: DEFAULT_LOCALE, setLocale: () => {}, locales: LOCALES });
@@ -28,13 +34,11 @@ export default function LocaleProvider({ children }: { children: ReactNode }) {
     try { localStorage.setItem("site_locale", l); } catch {}
   };
   const messages = MESSAGES[locale] || MESSAGES[DEFAULT_LOCALE] || {};
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const safeMessages = messages as any;
   return (
     <LocaleCtx.Provider value={{ locale, setLocale, locales: LOCALES }}>
       <NextIntlClientProvider
         locale={locale}
-        messages={safeMessages}
+        messages={messages}
         timeZone="UTC"
         onError={() => {}}
         getMessageFallback={({ key }) => key.split(".").pop() || key}

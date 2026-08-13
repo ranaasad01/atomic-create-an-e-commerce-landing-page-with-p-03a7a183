@@ -2,17 +2,36 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
+import { supabase } from "@/lib/supabase";
 
 export default function LoginPage() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Placeholder — no real auth logic
+    setLoading(true);
+    setError(null);
+
+    const { error: authError } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (authError) {
+      setError(authError.message);
+      setLoading(false);
+      return;
+    }
+
+    router.push("/");
   };
 
   return (
@@ -39,6 +58,16 @@ export default function LoginPage() {
         <p className="text-sm text-[var(--muted-foreground)] text-center mb-6">
           Sign in to your Asad account
         </p>
+
+        {/* Error Banner */}
+        {error && (
+          <div
+            role="alert"
+            className="bg-red-500/10 border border-red-500/30 text-red-400 rounded-xl px-4 py-3 text-sm mb-2"
+          >
+            {error}
+          </div>
+        )}
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -100,47 +129,39 @@ export default function LoginPage() {
 
           {/* Forgot Password */}
           <div className="flex justify-end">
-            <a
+            <Link
               href="#"
               className="text-xs text-[var(--primary)] hover:underline"
             >
               Forgot password?
-            </a>
+            </Link>
           </div>
 
           {/* Submit */}
           <button
             type="submit"
-            className="w-full bg-[var(--primary)] hover:opacity-90 text-white font-semibold py-3 rounded-xl transition-all mt-2"
+            disabled={loading}
+            className="w-full bg-[var(--primary)] hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-xl transition-all duration-200 text-sm"
           >
-            Sign In
+            {loading ? "Signing in\u2026" : "Sign In"}
           </button>
         </form>
 
         {/* Divider */}
-        <div className="flex items-center gap-3 my-5">
+        <div className="flex items-center gap-3 my-6">
           <div className="flex-1 h-px bg-[var(--border)]" />
-          <span className="text-xs text-[var(--muted-foreground)] select-none">or</span>
+          <span className="text-xs text-[var(--muted-foreground)]">or</span>
           <div className="flex-1 h-px bg-[var(--border)]" />
         </div>
 
-        {/* Google Button */}
-        <button
-          type="button"
-          className="w-full flex items-center justify-center gap-3 border border-[var(--border)] bg-transparent text-[var(--foreground)] hover:bg-[var(--border)]/30 font-medium py-3 rounded-xl transition-all"
-        >
-          <span className="font-bold text-[var(--primary)] text-base leading-none">G</span>
-          Continue with Google
-        </button>
-
         {/* Sign Up Link */}
-        <p className="text-sm text-[var(--muted-foreground)] text-center mt-6">
+        <p className="text-center text-sm text-[var(--muted-foreground)]">
           Don&apos;t have an account?{" "}
           <Link
             href="/signup"
             className="text-[var(--primary)] font-semibold hover:underline"
           >
-            Sign Up
+            Create one
           </Link>
         </p>
       </motion.div>

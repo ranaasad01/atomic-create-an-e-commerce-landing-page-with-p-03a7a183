@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Eye, EyeOff, Mail, Lock, User } from 'lucide-react';
+import { supabase } from "@/lib/supabase";
 
 export default function SignupPage() {
   const [name, setName] = useState("");
@@ -13,10 +14,38 @@ export default function SignupPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [agreed, setAgreed] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Placeholder: no real auth logic
+    setLoading(true);
+    setError(null);
+    setSuccess(false);
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      setLoading(false);
+      return;
+    }
+
+    const { error: signUpError } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: { full_name: name },
+      },
+    });
+
+    if (signUpError) {
+      setError(signUpError.message);
+      setLoading(false);
+      return;
+    }
+
+    setSuccess(true);
+    setLoading(false);
   };
 
   return (
@@ -43,6 +72,26 @@ export default function SignupPage() {
         <p className="text-sm text-[var(--muted-foreground)] text-center mb-6">
           Join Asad and start shopping
         </p>
+
+        {/* Error Banner */}
+        {error && (
+          <div
+            role="alert"
+            className="bg-red-500/10 border border-red-500/30 text-red-400 rounded-xl px-4 py-3 text-sm mb-2"
+          >
+            {error}
+          </div>
+        )}
+
+        {/* Success Banner */}
+        {success && (
+          <div
+            role="alert"
+            className="bg-green-500/10 border border-green-500/30 text-green-400 rounded-xl px-4 py-3 text-sm mb-2"
+          >
+            Account created! Please check your email to confirm your account.
+          </div>
+        )}
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -89,6 +138,7 @@ export default function SignupPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
+                required
                 className="w-full bg-[var(--background)] border border-[var(--border)] rounded-xl pl-10 pr-4 py-3 text-[var(--foreground)] placeholder-[var(--muted-foreground)] focus:outline-none focus:border-[var(--primary)] transition-colors"
               />
             </div>
@@ -113,19 +163,16 @@ export default function SignupPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
+                required
                 className="w-full bg-[var(--background)] border border-[var(--border)] rounded-xl pl-10 pr-12 py-3 text-[var(--foreground)] placeholder-[var(--muted-foreground)] focus:outline-none focus:border-[var(--primary)] transition-colors"
               />
               <button
                 type="button"
-                onClick={() => setShowPassword((v) => !v)}
+                onClick={() => setShowPassword((prev) => !prev)}
                 aria-label={showPassword ? "Hide password" : "Show password"}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
               >
-                {showPassword ? (
-                  <EyeOff className="h-4 w-4" aria-hidden="true" />
-                ) : (
-                  <Eye className="h-4 w-4" aria-hidden="true" />
-                )}
+                {showPassword ? <EyeOff size={16} aria-hidden="true" /> : <Eye size={16} aria-hidden="true" />}
               </button>
             </div>
           </div>
@@ -149,84 +196,74 @@ export default function SignupPage() {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="••••••••"
+                required
                 className="w-full bg-[var(--background)] border border-[var(--border)] rounded-xl pl-10 pr-12 py-3 text-[var(--foreground)] placeholder-[var(--muted-foreground)] focus:outline-none focus:border-[var(--primary)] transition-colors"
               />
               <button
                 type="button"
-                onClick={() => setShowConfirm((v) => !v)}
+                onClick={() => setShowConfirm((prev) => !prev)}
                 aria-label={showConfirm ? "Hide confirm password" : "Show confirm password"}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
               >
-                {showConfirm ? (
-                  <EyeOff className="h-4 w-4" aria-hidden="true" />
-                ) : (
-                  <Eye className="h-4 w-4" aria-hidden="true" />
-                )}
+                {showConfirm ? <EyeOff size={16} aria-hidden="true" /> : <Eye size={16} aria-hidden="true" />}
               </button>
             </div>
           </div>
 
           {/* Terms Checkbox */}
-          <div className="flex items-start gap-3 pt-1">
+          <div className="flex items-start gap-3">
             <input
               id="agreed"
               type="checkbox"
               checked={agreed}
               onChange={(e) => setAgreed(e.target.checked)}
-              className="mt-0.5 h-4 w-4 rounded accent-[var(--primary)] cursor-pointer flex-shrink-0"
+              required
+              className="mt-1 h-4 w-4 rounded border-[var(--border)] bg-[var(--background)] accent-[var(--primary)] cursor-pointer"
             />
             <label
               htmlFor="agreed"
-              className="text-sm text-[var(--muted-foreground)] leading-snug cursor-pointer"
+              className="text-sm text-[var(--muted-foreground)] leading-relaxed cursor-pointer"
             >
               I agree to the{" "}
-              <a
+              <Link
                 href="#"
                 className="text-[var(--primary)] hover:underline"
               >
                 Terms of Service
-              </a>{" "}
+              </Link>{" "}
               and{" "}
-              <a
+              <Link
                 href="#"
                 className="text-[var(--primary)] hover:underline"
               >
                 Privacy Policy
-              </a>
+              </Link>
             </label>
           </div>
 
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-[var(--primary)] hover:opacity-90 text-white font-semibold py-3 rounded-xl transition-all duration-200 mt-2"
+            disabled={loading}
+            className="w-full bg-[var(--primary)] hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-xl transition-all duration-200 mt-2"
           >
-            Create Account
+            {loading ? "Creating account\u2026" : "Create Account"}
           </button>
         </form>
 
         {/* Divider */}
-        <div className="flex items-center gap-3 my-5">
+        <div className="flex items-center gap-3 my-6">
           <div className="flex-1 h-px bg-[var(--border)]" />
-          <span className="text-xs text-[var(--muted-foreground)] px-1">or</span>
+          <span className="text-xs text-[var(--muted-foreground)]">or</span>
           <div className="flex-1 h-px bg-[var(--border)]" />
         </div>
 
-        {/* Google Button */}
-        <button
-          type="button"
-          className="w-full flex items-center justify-center gap-3 border border-[var(--border)] bg-transparent text-[var(--foreground)] hover:bg-[var(--border)]/30 font-medium py-3 rounded-xl transition-all duration-200"
-        >
-          <span className="font-bold text-[var(--primary)] text-base leading-none">G</span>
-          Continue with Google
-        </button>
-
-        {/* Bottom Link */}
-        <p className="text-sm text-[var(--muted-foreground)] text-center mt-6">
+        {/* Login Link */}
+        <p className="text-sm text-[var(--muted-foreground)] text-center">
           Already have an account?{" "}
           <Link
             href="/login"
-            className="text-[var(--primary)] font-semibold hover:underline"
+            className="text-[var(--primary)] font-medium hover:underline"
           >
             Sign in
           </Link>
